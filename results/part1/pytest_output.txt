@@ -1,0 +1,127 @@
+============================= test session starts =============================
+platform win32 -- Python 3.13.12, pytest-9.2.0, pluggy-1.7.0 -- C:\Users\aviag\Desktop\VSCode\CS593\CS593-HW2\.venv\Scripts\python.exe
+rootdir: C:\Users\aviag\Desktop\VSCode\CS593\CS593-HW2
+configfile: pytest.ini
+testpaths: tests
+plugins: anyio-4.16.0, cov-7.1.0
+collecting ... collected 89 items
+
+tests/test_app.py::test_search_empty_or_whitespace_query_returns_400[] PASSED [  1%]
+tests/test_app.py::test_search_empty_or_whitespace_query_returns_400[   ] PASSED [  2%]
+tests/test_app.py::test_search_empty_or_whitespace_query_returns_400[\t\n] PASSED [  3%]
+tests/test_app.py::test_search_sends_all_keywords_anded_to_arxiv PASSED  [  4%]
+tests/test_app.py::test_search_single_keyword_query PASSED               [  5%]
+tests/test_app.py::test_search_result_has_expected_fields PASSED         [  6%]
+tests/test_app.py::test_search_collapses_whitespace_in_title_abstract_authors PASSED [  7%]
+tests/test_app.py::test_search_year_is_four_digit_string_from_published PASSED [  8%]
+tests/test_app.py::test_search_result_without_pdf_link_has_null_pdf_url PASSED [ 10%]
+tests/test_app.py::test_search_with_no_matches_returns_empty_list PASSED [ 11%]
+tests/test_app.py::test_search_network_error_returns_502 PASSED          [ 12%]
+tests/test_app.py::test_search_arxiv_http_error_status_returns_502 PASSED [ 13%]
+tests/test_app.py::test_save_paper_returns_saved_paper_with_id_and_arxiv_source PASSED [ 14%]
+tests/test_app.py::test_save_paper_with_only_required_fields PASSED      [ 15%]
+tests/test_app.py::test_save_paper_missing_required_field_is_rejected[title] PASSED [ 16%]
+tests/test_app.py::test_save_paper_missing_required_field_is_rejected[authors] PASSED [ 17%]
+tests/test_app.py::test_save_paper_downloads_pdf_and_sets_has_full_text PASSED [ 19%]
+tests/test_app.py::test_save_paper_stores_extracted_text_and_pdf_file PASSED [ 20%]
+tests/test_app.py::test_save_paper_pdf_http_error_or_non_pdf_still_saves_without_full_text[404-not found] PASSED [ 21%]
+tests/test_app.py::test_save_paper_pdf_http_error_or_non_pdf_still_saves_without_full_text[200-<html>captcha page</html>] PASSED [ 22%]
+tests/test_app.py::test_save_paper_pdf_network_error_still_saves_without_full_text PASSED [ 23%]
+tests/test_app.py::test_save_paper_without_pdf_url_has_no_full_text PASSED [ 24%]
+tests/test_app.py::test_save_duplicate_url_returns_existing_paper PASSED [ 25%]
+tests/test_app.py::test_save_duplicate_without_full_text_retries_download PASSED [ 26%]
+tests/test_app.py::test_save_duplicate_with_full_text_does_not_redownload PASSED [ 28%]
+tests/test_app.py::test_save_papers_without_url_are_not_deduplicated PASSED [ 29%]
+tests/test_app.py::test_list_papers_empty_library PASSED                 [ 30%]
+tests/test_app.py::test_list_papers_newest_first PASSED                  [ 31%]
+tests/test_app.py::test_list_papers_excludes_full_text PASSED            [ 32%]
+tests/test_app.py::test_get_paper_excludes_full_text PASSED              [ 33%]
+tests/test_app.py::test_list_papers_authors_is_list PASSED               [ 34%]
+tests/test_app.py::test_papers_persist_across_restart PASSED             [ 35%]
+tests/test_app.py::test_get_paper_returns_saved_paper PASSED             [ 37%]
+tests/test_app.py::test_get_paper_returns_404_for_unknown_id PASSED      [ 38%]
+tests/test_app.py::test_delete_paper_returns_ok_and_removes_it PASSED    [ 39%]
+tests/test_app.py::test_delete_paper_removes_stored_pdf_file PASSED      [ 40%]
+tests/test_app.py::test_delete_paper_removes_qa_history PASSED           [ 41%]
+tests/test_app.py::test_delete_paper_whose_pdf_file_is_already_gone PASSED [ 42%]
+tests/test_app.py::test_delete_unknown_paper_returns_404 PASSED          [ 43%]
+tests/test_app.py::test_delete_paper_twice_returns_404_second_time PASSED [ 44%]
+tests/test_app.py::test_upload_non_pdf_returns_400 PASSED                [ 46%]
+tests/test_app.py::test_upload_empty_file_returns_400 PASSED             [ 47%]
+tests/test_app.py::test_upload_unparseable_pdf_returns_400 PASSED        [ 48%]
+tests/test_app.py::test_upload_scanned_pdf_without_text_returns_400 PASSED [ 49%]
+tests/test_app.py::test_upload_saves_paper_with_extracted_metadata PASSED [ 50%]
+tests/test_app.py::test_upload_stores_pdf_file PASSED                    [ 51%]
+tests/test_app.py::test_upload_stores_full_text_of_all_pages PASSED      [ 52%]
+tests/test_app.py::test_upload_metadata_uses_only_first_two_pages PASSED [ 53%]
+tests/test_app.py::test_upload_metadata_text_capped_at_15000_chars PASSED [ 55%]
+tests/test_app.py::test_upload_gemini_failure_falls_back_to_filename PASSED [ 56%]
+tests/test_app.py::test_upload_gemini_failure_warning_explains_error PASSED [ 57%]
+tests/test_app.py::test_upload_missing_api_key_warning PASSED            [ 58%]
+tests/test_app.py::test_upload_fallback_title_strips_only_last_extension PASSED [ 59%]
+tests/test_app.py::test_summarize_returns_llm_summary PASSED             [ 60%]
+tests/test_app.py::test_summarize_caches_summary PASSED                  [ 61%]
+tests/test_app.py::test_summarize_returns_cached_without_calling_llm PASSED [ 62%]
+tests/test_app.py::test_summarize_regenerate_calls_llm_and_replaces_cache PASSED [ 64%]
+tests/test_app.py::test_summarize_uses_full_text_not_abstract PASSED     [ 65%]
+tests/test_app.py::test_summarize_full_text_capped_at_400000_chars PASSED [ 66%]
+tests/test_app.py::test_summarize_unknown_paper_returns_404 PASSED       [ 67%]
+tests/test_app.py::test_summarize_paper_without_full_text_returns_400 PASSED [ 68%]
+tests/test_app.py::test_summarize_llm_failure_returns_502_with_friendly_message PASSED [ 69%]
+tests/test_app.py::test_summarize_llm_failure_caches_nothing PASSED      [ 70%]
+tests/test_app.py::test_summarize_regenerate_failure_keeps_previous_summary PASSED [ 71%]
+tests/test_app.py::test_summarize_missing_api_key_returns_502 PASSED     [ 73%]
+tests/test_app.py::test_ask_returns_question_and_answer PASSED           [ 74%]
+tests/test_app.py::test_ask_saves_turn_to_history PASSED                 [ 75%]
+tests/test_app.py::test_ask_strips_question_whitespace PASSED            [ 76%]
+tests/test_app.py::test_ask_empty_question_returns_400[] PASSED          [ 77%]
+tests/test_app.py::test_ask_empty_question_returns_400[   ] PASSED       [ 78%]
+tests/test_app.py::test_ask_empty_question_returns_400[\n\t] PASSED      [ 79%]
+tests/test_app.py::test_ask_unknown_paper_returns_404 PASSED             [ 80%]
+tests/test_app.py::test_ask_paper_without_full_text_returns_400 PASSED   [ 82%]
+tests/test_app.py::test_ask_llm_failure_returns_502_and_saves_nothing PASSED [ 83%]
+tests/test_app.py::test_ask_puts_full_text_in_system_instruction PASSED  [ 84%]
+tests/test_app.py::test_ask_full_text_capped_at_400000_chars PASSED      [ 85%]
+tests/test_app.py::test_ask_without_history_sends_only_question PASSED   [ 86%]
+tests/test_app.py::test_ask_sends_only_last_five_turns_oldest_first PASSED [ 87%]
+tests/test_app.py::test_qa_history_in_order_asked PASSED                 [ 88%]
+tests/test_app.py::test_qa_history_empty_for_new_paper PASSED            [ 89%]
+tests/test_app.py::test_qa_history_unknown_paper_returns_404 PASSED      [ 91%]
+tests/test_app.py::test_friendly_error_known_status_codes[429-The Gemini model is busy or rate-limited right now. Try again in a minute.] PASSED [ 92%]
+tests/test_app.py::test_friendly_error_known_status_codes[503-The Gemini model is busy or rate-limited right now. Try again in a minute.] PASSED [ 93%]
+tests/test_app.py::test_friendly_error_known_status_codes[401-Gemini rejected the API key. Check GEMINI_API_KEY in .env.] PASSED [ 94%]
+tests/test_app.py::test_friendly_error_known_status_codes[403-Gemini rejected the API key. Check GEMINI_API_KEY in .env.] PASSED [ 95%]
+tests/test_app.py::test_friendly_error_other_status_code_is_generic PASSED [ 96%]
+tests/test_app.py::test_friendly_error_exception_without_code_is_generic PASSED [ 97%]
+tests/test_app.py::test_friendly_error_unrelated_runtime_error_is_generic FAILED [ 98%]
+tests/test_app.py::test_client_without_api_key_raises_with_message PASSED [100%]
+
+================================== FAILURES ===================================
+___________ test_friendly_error_unrelated_runtime_error_is_generic ____________
+
+    def test_friendly_error_unrelated_runtime_error_is_generic():
+>       assert llm.friendly_error(RuntimeError("event loop closed")) == "LLM request failed: event loop closed"
+E       AssertionError: assert 'event loop closed' == 'LLM request ...t loop closed'
+E         
+E         - LLM request failed: event loop closed
+E         + event loop closed
+
+tests\test_app.py:720: AssertionError
+=============================== tests coverage ================================
+______________ coverage: platform win32, python 3.13.12-final-0 _______________
+
+Name               Stmts   Miss Branch BrPart  Cover   Missing
+--------------------------------------------------------------
+app\__init__.py        0      0      0      0   100%
+app\db.py             61      0      6      0   100%
+app\llm.py            49      3     12      2    92%   20-23
+app\main.py          120      0     28      1    99%   145->147
+app\pdf_utils.py      16      0      2      0   100%
+app\search.py         20      0      6      0   100%
+--------------------------------------------------------------
+TOTAL                266      3     54      3    98%
+Coverage HTML written to dir results/part1/htmlcov
+Coverage JSON written to file results/part1/coverage.json
+=========================== short test summary info ===========================
+FAILED tests/test_app.py::test_friendly_error_unrelated_runtime_error_is_generic
+================= 1 failed, 88 passed, 336 warnings in 10.16s =================

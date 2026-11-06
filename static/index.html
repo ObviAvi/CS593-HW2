@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Research Assistant</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="brand">
+        <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">
+          <rect x="4" y="3" width="17" height="23" rx="3" fill="var(--lavender)"/>
+          <rect x="11" y="7" width="17" height="23" rx="3" fill="var(--lime)"/>
+          <path d="M15 14h9M15 18h9M15 22h6" stroke="var(--ink)" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <span>Research Assistant</span>
+      </div>
+
+      <nav class="nav">
+        <button class="nav-item active" data-view="search-view">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
+          Search
+        </button>
+        <button class="nav-item" data-view="library-view">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4v16H5zM10 4h4v16h-4zM15.5 5l3.8-1 3 15.5-3.8 1z"/></svg>
+          Library
+          <span id="library-count" class="badge" hidden></span>
+        </button>
+      </nav>
+
+      <form id="upload-form" class="upload-card">
+        <h2>Add your own paper</h2>
+        <p>Upload a PDF. The title, authors, year, and abstract are filled in for you.</p>
+        <label class="file-pick">
+          <input id="upload-input" type="file" accept="application/pdf,.pdf" required>
+          <span id="upload-name">Choose a PDF</span>
+        </label>
+        <button type="submit" class="btn btn-dark">Upload PDF</button>
+        <p id="upload-status" class="upload-status" role="status"></p>
+      </form>
+    </aside>
+
+    <main class="content">
+      <section id="search-view" class="view">
+        <header class="page-head">
+          <h1>Find papers</h1>
+          <p>Search arXiv by keyword or topic, then save papers to your library.</p>
+        </header>
+        <form id="search-form" class="search-bar" role="search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
+          <input id="search-input" type="search" placeholder="e.g. graph neural networks" aria-label="Search arXiv" required>
+          <button type="submit" class="btn btn-dark">Search</button>
+        </form>
+        <p id="status" class="status" role="status"></p>
+        <div id="results" class="paper-list"></div>
+      </section>
+
+      <section id="library-view" class="view" hidden>
+        <header class="page-head">
+          <h1>Your library</h1>
+          <p id="library-status">Papers you've saved or uploaded.</p>
+        </header>
+        <div id="library" class="paper-list"></div>
+      </section>
+
+      <section id="detail-view" class="view" hidden>
+        <button id="back-btn" class="btn btn-ghost">Back to library</button>
+        <header id="detail-head" class="detail-head"></header>
+
+        <div class="detail-grid">
+          <section class="card">
+            <div class="card-head">
+              <h2>Summary</h2>
+              <button id="summarize-btn" class="btn btn-lime">Summarize</button>
+            </div>
+            <p id="summary-status" class="status" role="status"></p>
+            <div id="summary" class="markdown"></div>
+          </section>
+
+          <section class="card card-dark">
+            <div class="card-head">
+              <h2>Ask about this paper</h2>
+            </div>
+            <div id="qa-list" class="qa-list"></div>
+            <div id="qa-suggestions" class="suggestions"></div>
+            <form id="ask-form" class="ask-bar">
+              <input id="ask-input" type="text" placeholder="Ask a question about this paper" aria-label="Question" required>
+              <button type="submit" class="btn btn-lime">Ask</button>
+            </form>
+            <p id="ask-status" class="status" role="status"></p>
+          </section>
+        </div>
+
+        <section class="card">
+          <h2>Abstract</h2>
+          <p id="detail-abstract" class="abstract-full"></p>
+        </section>
+      </section>
+    </main>
+  </div>
+
+  <div id="toast" class="toast" role="alert" hidden></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/18.0.14/lib/marked.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.4.16/purify.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

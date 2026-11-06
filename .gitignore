@@ -1,0 +1,24 @@
+# Python
+.venv/
+venv/
+__pycache__/
+*.pyc
+.coverage
+/htmlcov/
+.pytest_cache/
+
+# secrets
+.env
+
+# runtime data: SQLite database and downloaded/uploaded PDFs
+data/
+
+# course materials (not redistributed)
+cs593-hw1-requirements.pdf
+hw2.pdf
+
+# editor / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
